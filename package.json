@@ -14,7 +14,7 @@
     "url": "https://linkedin.com/in/yoavniran/"
   },
   "bin": {
-    "cloudinary-mcp-server": "./src/index.js"
+    "cloudinary-mcp-server": "./cli.js"
   },
   "files": [
     "LICENSE.md",
