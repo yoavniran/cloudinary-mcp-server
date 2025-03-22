@@ -27,28 +27,23 @@ const uploadTool = async (cloudinary, { source, folder, publicId, resourceType, 
 
 		// Handle different source types
 		if (typeof source === 'string') {
-			if (source.startsWith('http://') || source.startsWith('https://')) {
-				// Upload from URL
-				uploadResult = await cloudinary.uploader.upload(source, uploadOptions);
-			} else if (source.startsWith('data:')) {
-				// Upload base64 encoded data
-				uploadResult = await cloudinary.uploader.upload(source, uploadOptions);
-			} else {
-				// Assume it's a file path
-				uploadResult = await cloudinary.uploader.upload(source, uploadOptions);
-			}
+			uploadResult = await cloudinary.uploader.upload(source, uploadOptions);
 		} else if (Buffer.isBuffer(source)) {
 			// Handle Buffer data
 			uploadResult = await new Promise((resolve, reject) => {
 				const uploadStream = cloudinary.uploader.upload_stream(
 					uploadOptions,
 					(error, result) => {
-						if (error) return reject(error);
+						if (error) {
+							return reject(error);
+						}
 						resolve(result);
 					}
 				);
 				uploadStream.end(source);
 			});
+		} else {
+			throw new Error("unknown source type: " + typeof source);
 		}
 
 		return {
