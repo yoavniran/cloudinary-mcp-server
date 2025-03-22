@@ -1,0 +1,57 @@
+name: Create NPM Release
+
+on:
+    workflow_dispatch:
+        inputs:
+            releaseType:
+                type: choice
+                description: 'Version Type'
+                required: true
+                default: 'patch'
+                options:
+                    - patch
+                    - minor
+                    - major
+            dry:
+                type: boolean
+                description: 'Is Dry Run?'
+                required: false
+                default: false
+
+permissions:
+    contents: write
+
+defaults:
+    run:
+        shell: bash
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            - name: Define GIT author
+              run: |
+                  git config user.email "ci@cld-mcp-server"
+                  git config user.name "CLD MCP-SERVER CI"
+
+            - name: Set NPM Auth
+              env:
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+              run: |
+                  npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+
+            - uses: ./.github/actions/setup
+
+            - run: pnpm test
+
+            - run: |
+                git status
+
+            - name: Release
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  pnpm release-it ${{ inputs.releaseType }} ${{ inputs.dry && ' --dry-run' || '' }}
