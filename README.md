@@ -27,7 +27,7 @@ Open an [issue](https://github.com/yoavniran/cloudinary-mcp-server/issues) with 
 
 -   NodeJS
 -   MCP Client (like Claude Desktop App)
--   Make API Key/Secret at: [API KEYS](https://console.cloudinary.com/settings/api-keys)
+-   Create & Copy Cloudinary API Key/Secret at: [API KEYS](https://console.cloudinary.com/settings/api-keys)
 
 ### Installation
 
