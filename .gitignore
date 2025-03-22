@@ -1,0 +1,7 @@
+llm-docs/
+.idea/
+node_modules/
+.env
+dist/
+coverage/
+*.log
