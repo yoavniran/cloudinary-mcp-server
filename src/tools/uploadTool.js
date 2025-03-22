@@ -1,5 +1,6 @@
-import getCloudinaryTool from "./getCloudinaryTool.js";
 import { z } from "zod";
+import { getToolError } from "../utils.js";
+import getCloudinaryTool from "./getCloudinaryTool.js";
 
 export const uploadToolParams = {
 	source: z.union([
@@ -60,16 +61,7 @@ const uploadTool = async (cloudinary, { source, folder, publicId, resourceType, 
 			isError: false,
 		};
 	} catch (error) {
-		console.error("Upload error:", error);
-		return {
-			content: [
-				{
-					type: "text",
-					text: `Error uploading to Cloudinary: ${error.message}`
-				}
-			],
-			isError: true
-		};
+		return getToolError(`Error uploading to Cloudinary: ${error.message}`, cloudinary);
 	}
 }
 

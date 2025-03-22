@@ -1,5 +1,6 @@
-import getCloudinaryTool from "./getCloudinaryTool.js";
 import { z } from "zod";
+import { getToolError } from "../utils.js";
+import getCloudinaryTool from "./getCloudinaryTool.js";
 
 export const deleteAssetToolParams = {
 	publicId: z.string().optional().describe("The public ID of the asset to delete"),
@@ -42,26 +43,14 @@ const deleteAssetTool = async (cloudinary, { publicId, assetId }) => {
 			// Delete by public ID using Cloudinary API
 			result = await cloudinary.api.delete_resources(publicId);
 			if (!result || result?.deleted[publicId] === "not_found") {
-				return {
-					content: [{
-						type: "text",
-						text: `Failed to delete asset with publicId: '${publicId}' - not_found`
-					}],
-					isError: true
-				};
+				return getToolError(`Failed to delete asset with publicId: '${publicId}' - not_found`, cloudinary);
 			}
 		} else {
 			// Delete by asset ID using /resources endpoint
 			result = await deleteWithAssetId([assetId]);
 
 			if (!result.ok) {
-				return {
-					content: [{
-						type: "text",
-						text: `Failed to delete asset with assetId: '${assetId}' - ${result.error.message}`
-					}],
-					isError: true
-				};
+				return getToolError(`Failed to delete asset with assetId: '${assetId}' - ${result.error.message}`, cloudinary);
 			}
 		}
 
@@ -73,13 +62,7 @@ const deleteAssetTool = async (cloudinary, { publicId, assetId }) => {
 			isError: false,
 		};
 	} catch (error) {
-		return {
-			content: [{
-				type: "text",
-				text: `Error deleting asset: ${error.message}`
-			}],
-			isError: true
-		};
+		return getToolError(`Error deleting asset: ${error.message}`, cloudinary);
 	}
 };
 

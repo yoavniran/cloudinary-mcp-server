@@ -1,5 +1,6 @@
-import getCloudinaryTool from "./getCloudinaryTool.js";
 import { z } from "zod";
+import { getToolError } from "../utils.js";
+import getCloudinaryTool from "./getCloudinaryTool.js";
 
 export const findAssetsToolParams = {
 	expression: z.string().optional().describe("Search expression (e.g. 'tags=cat' or 'public_id:folder/*')"),
@@ -38,6 +39,7 @@ const findAssetsTool = async (cloudinary, {
 						text: "No assets found matching the search criteria",
 					},
 				],
+				isError: false,
 			};
 		}
 
@@ -50,15 +52,7 @@ const findAssetsTool = async (cloudinary, {
 		};
 
 	} catch (error) {
-		return {
-			content: [
-				{
-					type: "text",
-					text: `Error searching assets: ${error.message}`,
-				},
-			],
-			isError: true,
-		};
+		return getToolError(`Error searching assets: ${error.message}`, cloudinary);
 	}
 };
 

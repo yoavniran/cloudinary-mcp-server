@@ -64,5 +64,6 @@ describe("findAssetsTool", () => {
 
 		expect(result.content[0].text).toContain("Error searching assets: Invalid search expression");
 		expect(result.isError).toBe(true);
+		expect(result.content[0].text).toContain(`(cloud: ${cloudinaryMock.config().cloud_name})`)
 	});
 });

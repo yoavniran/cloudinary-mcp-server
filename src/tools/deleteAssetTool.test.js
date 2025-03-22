@@ -36,6 +36,7 @@ describe("deleteAssetTool", () => {
 
 		expect(result.content[0].text).toContain("Failed to delete asset with publicId: 'test123'");
 		expect(result.isError).toBe(true);
+		expect(result.content[0].text).toContain(`(cloud: ${cloudinaryMock.config().cloud_name})`)
 	});
 
 	it("should return error when neither publicId nor assetId is provided", async () => {
@@ -43,6 +44,7 @@ describe("deleteAssetTool", () => {
 
 		expect(result.content[0].text).toContain("Must provide either publicId or assetId to delete");
 		expect(result.isError).toBe(true);
+		expect(result.content[0].text).toContain(`(cloud: ${cloudinaryMock.config().cloud_name})`)
 	});
 
 	it("should handle API errors", async () => {
@@ -54,5 +56,6 @@ describe("deleteAssetTool", () => {
 
 		expect(result.content[0].text).toContain("Error deleting asset: Permission denied");
 		expect(result.isError).toBe(true);
+		expect(result.content[0].text).toContain(`(cloud: ${cloudinaryMock.config().cloud_name})`)
 	});
 });

@@ -1,5 +1,6 @@
-import getCloudinaryTool from "./getCloudinaryTool.js";
 import { z } from "zod";
+import { getToolError } from "../utils.js";
+import getCloudinaryTool from "./getCloudinaryTool.js";
 
 export const getAssetToolParams = {
 	assetId: z.string().optional().describe("The Cloudinary asset ID"),
@@ -8,20 +9,12 @@ export const getAssetToolParams = {
 	type: z.enum(["upload", "private", "authenticated", "fetch", "facebook", "twitter", "gravatar", "youtube", "hulu", "vimeo", "animoto", "worldstarhiphop", "dailymotion", "list"]).optional().describe("Delivery type. Default: upload"),
 	tags: z.boolean().optional().describe("Whether to include the list of tag names. Default: false"),
 	context: z.boolean().optional().describe("Whether to include contextual metadata. Default: false"),
-	metadata: z.boolean().optional().describe("Whether to include structured metadata. Default: false")
+	metadata: z.boolean().optional().describe("Whether to include structured metadata. Default: false"),
 };
 
 const getAssetTool = async (cloudinary, params) => {
 	if (!params.assetId && !params.publicId) {
-		return {
-			content: [
-				{
-					type: "text",
-					text: "Error: Either assetId or publicId must be provided"
-				}
-			],
-			isError: true
-		};
+		return getToolError("Error: Either assetId or publicId must be provided", cloudinary);
 	}
 
 	try {
@@ -48,24 +41,15 @@ const getAssetTool = async (cloudinary, params) => {
 		return {
 			content: [{
 				type: "text",
-				text: JSON.stringify(resource, null, 2)
+				text: JSON.stringify(resource, null, 2),
 			}],
 			isError: false,
 		};
 
 	} catch (error) {
-		return {
-			content: [
-				{
-					type: "text",
-					text: `Error retrieving asset: ${error.message || "unknown error"}`
-				}
-			],
-			isError: true
-		};
+		return getToolError(`Error retrieving asset: ${error.message || "unknown error"}`, cloudinary);
 	}
-
-}
+};
 
 export default getCloudinaryTool(getAssetTool);
 

@@ -135,3 +135,8 @@ main()
 	console.error("Fatal error in main():", error);
 	process.exit(1);
 });
+
+// Export Cloudinary for testing
+export {
+	cloudinary,
+}
