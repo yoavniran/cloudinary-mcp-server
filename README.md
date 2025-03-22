@@ -1,7 +1,7 @@
 # Cloudinary MCP Server
 
 A Model Context Protocol server that exposes Cloudinary Upload & Admin API methods as tools by AI assistants. 
-This integration allows AI systems to trigger and interact with your Cloudinary automation cloud.
+This integration allows AI systems to trigger and interact with your Cloudinary cloud.
 
 ## How It Works
 
