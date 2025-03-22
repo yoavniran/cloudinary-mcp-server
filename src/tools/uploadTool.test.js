@@ -37,6 +37,6 @@ describe("uploadTool", () => {
 
 		expect(result.content[0].text).toContain("Error uploading to Cloudinary: Upload failed");
 		expect(result.isError).toBe(true);
-		expect(result.content[0].text).toContain(`(cloud: ${cloudinaryMock.config().cloud_name})`)
+		expect(result.content[0].text).toContain(`(cloud: ${cloudinaryMock.config().cloud_name}, key: ${cloudinaryMock.config().api_key.slice(0, 4)}...)`)
 	});
 });

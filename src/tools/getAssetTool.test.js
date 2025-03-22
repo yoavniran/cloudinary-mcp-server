@@ -46,7 +46,7 @@ describe("getAssetTool", () => {
 
 		expect(result.content[0].text).toContain("Either assetId or publicId must be provided");
 		expect(result.isError).toBe(true);
-		expect(result.content[0].text).toContain(`(cloud: ${cloudinaryMock.config().cloud_name})`)
+		expect(result.content[0].text).toContain(`(cloud: ${cloudinaryMock.config().cloud_name}, key: ${cloudinaryMock.config().api_key.slice(0, 4)}...)`)
 	});
 
 	it("should handle API errors", async () => {
@@ -58,6 +58,6 @@ describe("getAssetTool", () => {
 
 		expect(result.content[0].text).toContain("Error retrieving asset: Resource not found");
 		expect(result.isError).toBe(true);
-		expect(result.content[0].text).toContain(`(cloud: ${cloudinaryMock.config().cloud_name})`)
+		expect(result.content[0].text).toContain(`(cloud: ${cloudinaryMock.config().cloud_name}, key: ${cloudinaryMock.config().api_key.slice(0, 4)}...)`)
 	});
 });
