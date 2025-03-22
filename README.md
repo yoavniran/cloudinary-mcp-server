@@ -1,4 +1,4 @@
-<img src="https://github.com/yoavniran/cloudinary-mcp-server/blob/main/cld-mcp-server.png?raw=true" width="240" height="240" align="center" />
+<img src="https://github.com/yoavniran/cloudinary-mcp-server/blob/main/cld-mcp-server.png?raw=true" width="120" height="120" align="center" />
 
 # Cloudinary MCP Server
 
