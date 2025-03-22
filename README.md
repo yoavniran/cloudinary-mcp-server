@@ -1,3 +1,4 @@
+
 # Cloudinary MCP Server
 
 A Model Context Protocol server that exposes Cloudinary Upload & Admin API methods as tools by AI assistants. 
@@ -36,7 +37,7 @@ To use this server with the Claude Desktop app, add the following configuration 
 ```json
 {
     "mcpServers": {
-        "make": {
+        "cloudinary-mcp-server": {
             "command": "npx",
             "args": ["-y", "cloudinary-mcp-server"],
             "env": {
