@@ -6,8 +6,22 @@
   "type": "module",
   "scripts": {
     "test": "vitest --run",
-    "inspect": "npx @modelcontextprotocol/inspector node src/index.js"
+    "inspect": "npx @modelcontextprotocol/inspector node src/index.js",
+    "inspect-prod": "npx @modelcontextprotocol/inspector npx -y cloudinary-mcp-server"
   },
+  "author": {
+    "name": "Yoav Niran",
+    "url": "https://linkedin.com/in/yoavniran/"
+  },
+  "bin": {
+    "cloudinary-mcp-server": "./src/index.js"
+  },
+  "files": [
+    "LICENSE.md",
+    "README.md",
+    "src/",
+    "package.json"
+  ],
   "dependencies": {
     "@modelcontextprotocol/sdk": "latest",
     "cloudinary": "^1.41.3",
@@ -20,5 +34,8 @@
     "vitest": "^3.0.9",
     "release-it": "^18.1.2"
   },
-  "private": false
+  "private": false,
+  "engines": {
+    "node": ">=18.3.0"
+  }
 }
