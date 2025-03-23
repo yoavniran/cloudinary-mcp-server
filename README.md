@@ -54,3 +54,44 @@ To use this server with the Claude Desktop app, add the following configuration 
 -   `CLOUDINARY_CLOUD_NAME` - your cloud name
 -   `CLOUDINARY_API_KEY` - The API Key for your cloud
 -   `CLOUDINARY_API_SECRET` - The API Secret for your cloud
+
+
+### Tools
+
+The following tools are available:
+
+1. **upload**
+    - Description: Upload an asset to Cloudinary
+    - Parameters:
+        - `source`: URL, file path, base64 content, or binary data to upload
+        - `folder`: Optional folder path in Cloudinary
+        - `publicId`: Optional public ID for the uploaded asset
+        - `resourceType`: Type of resource to upload (image, video, raw, auto)
+        - `tags`: Comma-separated list of tags to assign to the asset
+
+2. **delete-asset**
+    - Description: Delete an asset from Cloudinary
+    - Parameters:
+        - `publicId`: The public ID of the asset to delete
+        - `assetId`: The asset ID of the asset to delete
+
+3. **get-asset**
+    - Description: Get details about a specific asset
+    - Parameters:
+        - `assetId`: The Cloudinary asset ID
+        - `publicId`: The public ID of the asset
+        - `resourceType`: Type of asset (image, raw, video)
+        - `type`: Delivery type (upload, private, authenticated, etc.)
+        - `tags`: Whether to include the list of tag names
+        - `context`: Whether to include contextual metadata
+        - `metadata`: Whether to include structured metadata
+
+4. **find-assets**
+    - Description: Search for assets in Cloudinary
+    - Parameters:
+        - `expression`: Search expression (e.g. 'tags=cat' or 'public_id:folder/*')
+        - `resourceType`: Resource type (image, video, raw)
+        - `maxResults`: Maximum number of results (1-500)
+        - `nextCursor`: Next cursor for pagination
+        - `tags`: Include tags in the response
+        - `context`: Include context in the response

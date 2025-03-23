@@ -11,7 +11,7 @@ export const uploadToolParams = {
 	folder: z.string().optional().describe("Optional folder path in Cloudinary"),
 	publicId: z.string().optional().describe("Optional public ID for the uploaded asset"),
 	resourceType: z.enum(["image", "video", "raw", "auto"]).default("auto").describe("Type of resource to upload"),
-	tags: z.string().optional().describe("Comma-separated list of tags to assign to the asset"),
+	tags: z.string().optional().describe("A string containing Comma-separated list of tags to assign to the asset"),
 };
 
 const uploadTool = async (cloudinary, { source, folder, publicId, resourceType, tags }) => {
