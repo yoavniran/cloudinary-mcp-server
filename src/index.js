@@ -42,58 +42,6 @@ server.tool(
 );
 
 /**
- * Tool for Signed Uploading an asset to Cloudinary
- */
-server.tool(
-	"signed-upload",
-	"Generate a signature for direct browser-based uploads",
-	{
-		params: z.record(z.any()).describe("Parameters to sign (folder, public_id, etc)"),
-		timestamp: z.number().optional().describe("Timestamp to use (defaults to current time)"),
-	},
-	async ({ params, timestamp = Math.round(Date.now() / 1000) }) => {
-		try {
-			// Include timestamp in the parameters
-			const paramsToSign = { ...params, timestamp };
-
-			// Generate signature
-			const signature = cloudinary.utils.api_sign_request(
-				paramsToSign,
-				cloudinary.config().api_secret,
-			);
-
-			return {
-				content: [
-					{
-						type: "text",
-						text: JSON.stringify(
-							{
-								signature,
-								timestamp,
-								cloudName: cloudinary.config().cloud_name,
-								apiKey: cloudinary.config().api_key,
-							},
-							null,
-							2,
-						),
-					},
-				],
-			};
-		} catch (error) {
-			return {
-				content: [
-					{
-						type: "text",
-						text: `Error generating signature: ${error.message}`,
-					},
-				],
-				isError: true,
-			};
-		}
-	},
-);
-
-/**
  * Tool for Deleting an asset from Cloudinary
  */
 server.tool(
