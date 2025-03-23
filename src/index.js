@@ -59,7 +59,7 @@ server.tool(
 			// Generate signature
 			const signature = cloudinary.utils.api_sign_request(
 				paramsToSign,
-				cloudinary.config().api_secret
+				cloudinary.config().api_secret,
 			);
 
 			return {
@@ -74,7 +74,7 @@ server.tool(
 								apiKey: cloudinary.config().api_key,
 							},
 							null,
-							2
+							2,
 						),
 					},
 				],
@@ -90,7 +90,7 @@ server.tool(
 				isError: true,
 			};
 		}
-	}
+	},
 );
 
 /**
@@ -100,7 +100,7 @@ server.tool(
 	"delete-asset",
 	"Delete an asset from Cloudinary",
 	deleteAssetToolParams,
-	getDeleteTool(cloudinary)
+	getDeleteTool(cloudinary),
 );
 
 /**
@@ -110,7 +110,7 @@ server.tool(
 	"get-asset",
 	"Get details about a specific asset",
 	getAssetToolParams,
-	getGetAssetTool(cloudinary)
+	getGetAssetTool(cloudinary),
 );
 
 /**
@@ -120,7 +120,7 @@ server.tool(
 	"find-assets",
 	"Search for assets in Cloudinary",
 	findAssetsToolParams,
-	getFindAssetsTool(cloudinary)
+	getFindAssetsTool(cloudinary),
 );
 
 // Start the server with stdio transport
@@ -128,15 +128,15 @@ const main = async () => {
 	const transport = new StdioServerTransport();
 	await server.connect(transport);
 	console.error("Cloudinary MCP Server running on stdio");
-}
+};
 
 main()
 	.catch((error) => {
-	console.error("Fatal error in main():", error);
-	process.exit(1);
-});
+		console.error("Fatal error in main():", error);
+		process.exit(1);
+	});
 
 // Export Cloudinary for testing
 export {
 	cloudinary,
-}
+};

@@ -31,8 +31,8 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
     "chai": "^5.2.0",
-    "vitest": "^3.0.9",
-    "release-it": "^18.1.2"
+    "release-it": "^18.1.2",
+    "vitest": "^3.0.9"
   },
   "private": false,
   "engines": {
