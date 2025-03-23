@@ -2,6 +2,12 @@
 
 # Cloudinary MCP Server
 
+<p align="center">
+    <a href="https://badge.fury.io/js/cloudinary-mcp-server">
+        <img src="https://badge.fury.io/js/cloudinary-mcp-server.svg" alt="npm version" height="20">
+    </a>
+</p>
+
 A Model Context Protocol server that exposes Cloudinary Upload & Admin API methods as tools by AI assistants. 
 This integration allows AI systems to trigger and interact with your Cloudinary cloud.
 
