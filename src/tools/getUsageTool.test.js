@@ -31,11 +31,11 @@ describe("getUsageTool", () => {
 			}
 		};
 
-		cloudinaryMock.usage.mockResolvedValue(mockUsageData);
+		cloudinaryMock.api.usage.mockResolvedValue(mockUsageData);
 
 		const result = await usageTool({});
 
-		expect(cloudinaryMock.usage).toHaveBeenCalledWith({});
+		expect(cloudinaryMock.api.usage).toHaveBeenCalledWith({});
 		expect(result.isError).toBe(false);
 		expect(result.content).toHaveLength(1);
 		expect(result.content[0].type).toBe("text");
@@ -57,11 +57,11 @@ describe("getUsageTool", () => {
 		};
 
 		const date = "2023-04-15";
-		cloudinaryMock.usage.mockResolvedValue(mockUsageData);
+		cloudinaryMock.api.usage.mockResolvedValue(mockUsageData);
 
 		const result = await usageTool({ date });
 
-		expect(cloudinaryMock.usage).toHaveBeenCalledWith({ date });
+		expect(cloudinaryMock.api.usage).toHaveBeenCalledWith({ date });
 		expect(result.isError).toBe(false);
 		expect(result.content).toHaveLength(1);
 		expect(result.content[0].type).toBe("text");
@@ -70,7 +70,7 @@ describe("getUsageTool", () => {
 
 	it("should handle API errors", async () => {
 		const errorMessage = "API Error: Invalid date format";
-		cloudinaryMock.usage.mockRejectedValue(new Error(errorMessage));
+		cloudinaryMock.api.usage.mockRejectedValue(new Error(errorMessage));
 
 		const result = await usageTool({ date: "invalid-date" });
 
