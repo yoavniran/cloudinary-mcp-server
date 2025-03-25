@@ -36,7 +36,7 @@ const server = new McpServer({
  */
 server.tool(
 	"upload",
-	"Upload an asset to Cloudinary",
+	"Upload a file (asset) to Cloudinary",
 	uploadToolParams,
 	getUploadTool(cloudinary),
 );
@@ -46,7 +46,7 @@ server.tool(
  */
 server.tool(
 	"delete-asset",
-	"Delete an asset from Cloudinary",
+	"Delete a file (asset) from Cloudinary",
 	deleteAssetToolParams,
 	getDeleteTool(cloudinary),
 );
@@ -56,7 +56,7 @@ server.tool(
  */
 server.tool(
 	"get-asset",
-	"Get details about a specific asset",
+	"Get the details of a specific file (asset)",
 	getAssetToolParams,
 	getGetAssetTool(cloudinary),
 );
@@ -66,14 +66,17 @@ server.tool(
  */
 server.tool(
 	"find-assets",
-	"Search for assets in Cloudinary",
+	"Search for existing files (assets) in Cloudinary with a query expression",
 	findAssetsToolParams,
 	getFindAssetsTool(cloudinary),
 );
 
+/**
+ * Tool for getting usage information from Cloudinary
+ */
 server.tool(
 	"get-usage",
-	"Get a report on the status of your product environment usage, including storage, credits, bandwidth, requests, number of resources, and add-on usage. Note that numbers are updated periodically.",
+	"Get a report on the status of your product environment usage, including storage, credits, bandwidth, requests, number of resources, and add-on usage",
 	getUsageToolParams,
 	getUsageTool(cloudinary),
 );

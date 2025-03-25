@@ -67,7 +67,7 @@ To use this server with the Claude Desktop app, add the following configuration 
 The following tools are available:
 
 1. **upload**
-    - Description: Upload an asset to Cloudinary
+    - Description: Upload a file (asset) to Cloudinary
     - Parameters:
         - `source`: URL, file path, base64 content, or binary data to upload
         - `folder`: Optional folder path in Cloudinary
@@ -76,13 +76,13 @@ The following tools are available:
         - `tags`: Comma-separated list of tags to assign to the asset
 
 2. **delete-asset**
-    - Description: Delete an asset from Cloudinary
+    - Description: Delete a file (asset) from Cloudinary
     - Parameters:
         - `publicId`: The public ID of the asset to delete
         - `assetId`: The asset ID of the asset to delete
 
 3. **get-asset**
-    - Description: Get details about a specific asset
+    - Description: Get the details of a specific file (asset)
     - Parameters:
         - `assetId`: The Cloudinary asset ID
         - `publicId`: The public ID of the asset
@@ -93,7 +93,7 @@ The following tools are available:
         - `metadata`: Whether to include structured metadata
 
 4. **find-assets**
-    - Description: Search for assets in Cloudinary
+    - Description: Search for existing files (assets) in Cloudinary with a query expression
     - Parameters:
         - `expression`: Search expression (e.g. 'tags=cat' or 'public_id:folder/*')
         - `resourceType`: Resource type (image, video, raw)
@@ -101,3 +101,8 @@ The following tools are available:
         - `nextCursor`: Next cursor for pagination
         - `tags`: Include tags in the response
         - `context`: Include context in the response
+
+5. **get-usage**
+    - Description: Get a report on the status of your product environment usage, including storage, credits, bandwidth, requests, number of resources, and add-on usage
+    - Parameters:
+        - `date`: Optional. The date for the usage report in the format: yyyy-mm-dd. Must be within the last 3 months. Default: the current date
