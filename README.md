@@ -2,6 +2,10 @@
 
 # Cloudinary MCP Server
 
+<a href="https://glama.ai/mcp/servers/@yoavniran/cloudinary-mcp-server">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@yoavniran/cloudinary-mcp-server/badge" alt="cloudinary-mcp-server MCP server" />
+</a>
+
 <p align="center">
     <a href="https://badge.fury.io/js/cloudinary-mcp-server">
         <img src="https://badge.fury.io/js/cloudinary-mcp-server.svg" alt="npm version" height="20">
