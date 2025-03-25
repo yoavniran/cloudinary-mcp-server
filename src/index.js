@@ -7,6 +7,7 @@ import getUploadTool, { uploadToolParams } from "./tools/uploadTool.js";
 import getDeleteTool, { deleteAssetToolParams } from "./tools/deleteAssetTool.js";
 import getGetAssetTool, { getAssetToolParams } from "./tools/getAssetTool.js";
 import getFindAssetsTool, { findAssetsToolParams } from "./tools/findAssetsTool.js";
+import getUsageTool, { getUsageToolParams } from "./tools/getUsageTool.js";
 
 dotenv.config();
 
@@ -69,6 +70,14 @@ server.tool(
 	findAssetsToolParams,
 	getFindAssetsTool(cloudinary),
 );
+
+server.tool(
+	"get-usage",
+	"Get a report on the status of your product environment usage, including storage, credits, bandwidth, requests, number of resources, and add-on usage. Note that numbers are updated periodically.",
+	getUsageToolParams,
+	getUsageTool(cloudinary),
+);
+
 
 // Start the server with stdio transport
 const main = async () => {

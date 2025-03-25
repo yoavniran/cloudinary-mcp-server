@@ -17,6 +17,7 @@ export const createCloudinaryMock = () => {
 			resources_by_asset_ids: vi.fn(),
 			delete_resources: vi.fn(),
 			search: vi.fn()
-		}
+		},
+		usage: vi.fn()  // Added usage method to the mock
 	};
 };
